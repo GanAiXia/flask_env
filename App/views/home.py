@@ -7,9 +7,11 @@ import random
 from flask import Blueprint, render_template
 from App.models import models, User
 
+# 设置蓝图
 home = Blueprint('home', __name__)
 
 
+# 主页
 @home.route('/')
 @home.route('/index')
 def index():
@@ -17,6 +19,7 @@ def index():
     return render_template("index.html")
 
 
+# 创建数据库页面
 @home.route('/createdb')
 def create_db():
     models.create_all()
@@ -24,6 +27,7 @@ def create_db():
     return 'Create Table Success!'
 
 
+# 添加数据
 @home.route('/adduser')
 def add_user():
     user = User()
@@ -35,6 +39,7 @@ def add_user():
     return 'Insert Success!'
 
 
+# 删库
 @home.route('/dropdb')
 def drop_db():
     models.drop_all()

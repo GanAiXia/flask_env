@@ -4,6 +4,7 @@
 # @Software: PyCharm
 
 
+# 拼接数据库连接信息函数
 def get_db_uri(dbinfo):
 
     engine = dbinfo.get("ENGINE") or "sqlite"
@@ -17,6 +18,7 @@ def get_db_uri(dbinfo):
     return "{}+{}://{}:{}@{}:{}/{}".format(engine, driver, user, password, host, port, name)
 
 
+# Config配置
 class Config:
     DEBUG = False
     TESTING = False
@@ -24,6 +26,7 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
+# 开发环境配置
 class DevelopConfig(Config):
     DEBUG = True
 
@@ -40,6 +43,7 @@ class DevelopConfig(Config):
     SQLALCHEMY_DATABASE_URI = get_db_uri(dbinfo)
 
 
+# 测试环境配置
 class TestConfig(Config):
     DEBUG = True
 
@@ -56,6 +60,7 @@ class TestConfig(Config):
     SQLALCHEMY_DATABASE_URI = get_db_uri(dbinfo)
 
 
+# production server
 class StagingConfig(Config):
 
     dbinfo = {
@@ -71,6 +76,7 @@ class StagingConfig(Config):
     SQLALCHEMY_DATABASE_URI = get_db_uri(dbinfo)
 
 
+# 生产环境配置
 class ProductConfig(Config):
 
     dbinfo = {

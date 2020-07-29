@@ -5,5 +5,6 @@
 from App.views.home import home
 
 
+# 初始化视图 注册蓝图
 def init_view(app):
     app.register_blueprint(home)

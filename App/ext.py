@@ -5,10 +5,14 @@
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
+# 懒加载SQLAlchemy模块
 models = SQLAlchemy()
+# 懒加载数据迁移模块
 migrate = Migrate()
 
 
 def init_ext(app):
+    # 初始化数据模块
     models.init_app(app)
+    # 初始化数据迁移模块
     migrate.init_app(app, models)
